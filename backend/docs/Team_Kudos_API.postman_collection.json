@@ -1,0 +1,147 @@
+{
+  "info": {
+    "_postman_id": "team-kudos-api-2026",
+    "name": "Team Kudos REST API",
+    "description": "Complete Postman collection for Team Kudos peer recognition & kudos wall backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Sign Up",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane.doe@teamkudos.com\",\n  \"password\": \"Password123!\",\n  \"department\": \"Engineering\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/api/auth/signup", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "auth", "signup"] }
+          }
+        },
+        {
+          "name": "Log In",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"alex.rivera@teamkudos.com\",\n  \"password\": \"Password123!\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/api/auth/login", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "auth", "login"] }
+          }
+        },
+        {
+          "name": "Refresh Token Rotation",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "http://localhost:5000/api/auth/refresh", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "auth", "refresh"] }
+          }
+        },
+        {
+          "name": "Log Out",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "http://localhost:5000/api/auth/logout", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "auth", "logout"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get Current User Profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "http://localhost:5000/api/users/me", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "users", "me"] }
+          }
+        },
+        {
+          "name": "Search Employees",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "http://localhost:5000/api/users?search=alex", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "users"], "query": [{ "key": "search", "value": "alex" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Kudos",
+      "item": [
+        {
+          "name": "Give Kudos",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipientId\": \"RECIPIENT_USER_ID\",\n  \"points\": 20,\n  \"message\": \"Fantastic job leading the team presentation!\",\n  \"tags\": [\"#Teamwork\", \"#Innovation\"]\n}"
+            },
+            "url": { "raw": "http://localhost:5000/api/kudos", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "kudos"] }
+          }
+        },
+        {
+          "name": "Get Social Kudos Feed",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "http://localhost:5000/api/kudos?page=1&limit=10", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "kudos"], "query": [{ "key": "page", "value": "1" }, { "key": "limit", "value": "10" }] }
+          }
+        },
+        {
+          "name": "Toggle Reaction (+1, 👏, 🔥)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emoji\": \"🔥\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/api/kudos/KUDOS_ID/reactions", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "kudos", "KUDOS_ID", "reactions"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Leaderboard",
+      "item": [
+        {
+          "name": "Get Monthly Leaderboard",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "http://localhost:5000/api/leaderboard", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "leaderboard"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Get Admin Dashboard Metrics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "http://localhost:5000/api/admin/dashboard", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "admin", "dashboard"] }
+          }
+        },
+        {
+          "name": "Trigger Allowance Reset",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "http://localhost:5000/api/admin/reset-allowance", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "admin", "reset-allowance"] }
+          }
+        }
+      ]
+    }
+  ]
+}
